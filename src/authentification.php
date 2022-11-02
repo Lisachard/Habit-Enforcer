@@ -17,4 +17,12 @@ class BDD
             die;
         }
     }
+
+    public function add() {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $password = password_hash($password, PASSWORD_DEFAULT);
+        $sql = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
+        $this->database->exec($sql);
+    }
 }

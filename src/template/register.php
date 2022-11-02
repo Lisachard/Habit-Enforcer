@@ -3,7 +3,7 @@
 
 <?php 
 $title = "Register"; 
-include "meta.php"; 
+include_once "meta.php"; 
 ?>
 
 <body>

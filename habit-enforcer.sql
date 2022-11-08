@@ -10,6 +10,7 @@ CREATE TABLE `Membre`(
     `pseudo` CHAR(255) NOT NULL,
     `email` CHAR(255) NOT NULL,
     `password` CHAR(255) NOT NULL,
+    `profile_picture` CHAR(255) NOT NULL,
     `group_id` INT NULL,
     PRIMARY KEY(`member_id`),
     FOREIGN KEY(`group_id`) REFERENCES `Groupe`(`group_id`) ON DELETE SET NULL

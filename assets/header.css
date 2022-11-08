@@ -1,9 +1,17 @@
-.body {
-    background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+body {
+    margin: 0;
+    padding: 0;
 }
 
-.site-header {
+.site-header__wrapper {
+    height: 5vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+}
+
+img {
+    max-width: 50px;
 }

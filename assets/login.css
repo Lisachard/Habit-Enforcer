@@ -1,14 +1,17 @@
-* {
+* 
+{
     margin: 0px;
     padding: 0px;
     font-family: 'Varela Round', sans-serif;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
-html {
+html 
+{
     scroll-behavior: smooth;
 }
-body.loginhtml {
+body.loginhtml 
+{
     width: 100%;
     background-image: url("../../static/style/img/bg.png");
     background-position: center center;
@@ -19,7 +22,8 @@ body.loginhtml {
     justify-content: center;
 }
 /* tete de page */
-section.top-page {
+section.top-page 
+{
     background-image: url("../../static/style/img/bg.png");
     background-position: center center;
     background-repeat: no-repeat;
@@ -27,14 +31,16 @@ section.top-page {
     background-size: cover;
 }
 /* bannières */
-.landing-page {
+.landing-page 
+{
     position: relative;
     padding: 50px 50px;
     color: white;
     font-size: 100px;
 }
 /* div de log + sign */
-.log {
+.log 
+{
     width: 25%;
     height: 325px;
     background-color: white;
@@ -45,7 +51,8 @@ section.top-page {
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
     border-radius: 6px;
 }
-.sig {
+.sig 
+{
     width: 35%;
     height: 600px;
     background-color: white;
@@ -56,7 +63,8 @@ section.top-page {
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
     border-radius: 6px;
 }
-.btn {
+.btn 
+{
     background-color: #CC6666;
     color: white;
     border: none;
@@ -66,11 +74,19 @@ section.top-page {
     border-radius: 6px;
     cursor: pointer;
 }
-form {
+.btn:hover 
+{
+    background-color: white;
+    color: #CC6666;
+    border: 2px solid #CC6666;
+}
+form 
+{
     max-width: 80%;
     text-align: center;
 }
-.feedback-input {
+.feedback-input 
+{
     color: black;
     font-weight: 500;
     font-size: 18px;
@@ -86,10 +102,12 @@ form {
     box-sizing: border-box;
     outline: 0;
 }
-.messagematch {
+.messagematch 
+{
     margin: 20px;
 }
-input[type=submit] {
+input[type=submit] 
+{
     background-color: #CC6666;
     color: white;
     padding: 14px 20px;
@@ -99,41 +117,48 @@ input[type=submit] {
     width: 100%;
     border-radius: 6px;
 }
-input[type=submit]:hover {
+input[type=submit]:hover 
+{
     background-color: white;
     color: #CC6666;
     border: 2px solid #CC6666;
 }
 /* div de log + sign */
 /* page forum */
-#main-wrap>div {
+#main-wrap>div 
+{
     text-align: center;
     min-height: 100%;
 }
-#header {
+#header 
+{
     min-height: 50px;
 }
 /* #main-wrap {
     overflow: hidden;
 } */
-#sidebar {
+#sidebar 
+{
     float: left;
     width: 25%;
     height: 100%;
 }
-#content-wrap {
+#content-wrap 
+{
     float: right;
     width: 75%;
     height: 100%;
 }
 /* pagination */
-.pagination {
+.pagination 
+{
     display: flex;
     justify-content: center;
     width: 100%;
     height: 50px;
 }
-.pagination a {
+.pagination a 
+{
     color: black;
     float: left;
     padding: 12px 18px;
@@ -141,7 +166,8 @@ input[type=submit]:hover {
     height: 20px;
     margin: 5px 0px 5px 0px;
 }
-.pagination a:hover:not(.active) {
+.pagination a:hover:not(.active) 
+{
     align-items: center;
     background-color: grey;
     border-radius: 22px;
@@ -149,7 +175,8 @@ input[type=submit]:hover {
 /* header */
 /* header */
 /* footer */
-.footer-basic {
+.footer-basic 
+{
     width: 100%;
     position: absolute;
     bottom: 0;
@@ -157,7 +184,8 @@ input[type=submit]:hover {
     background-color: #2F2638;
     color: white;
 }
-.footer-basic ul {
+.footer-basic ul 
+{
     margin: 10px;
     padding: 0;
     list-style: none;
@@ -165,23 +193,28 @@ input[type=submit]:hover {
     font-size: 18px;
     line-height: 1.6;
 }
-.footer-basic li {
+.footer-basic li 
+{
     padding: 0 10px;
     display: inline-block;
 }
-.footer-basic ul a {
+.footer-basic ul a 
+{
     color: inherit;
     text-decoration: none;
     opacity: 0.8;
 }
-.footer-basic ul a:hover {
+.footer-basic ul a:hover 
+{
     opacity: 1;
 }
-.footer-basic .social {
+.footer-basic .social 
+{
     text-align: center;
     padding-bottom: 25px;
 }
-.footer-basic .social>a {
+.footer-basic .social>a 
+{
     font-size: 24px;
     width: 40px;
     height: 40px;
@@ -194,10 +227,12 @@ input[type=submit]:hover {
     color: inherit;
     opacity: 0.75;
 }
-.footer-basic .social>a:hover {
+.footer-basic .social>a:hover 
+{
     opacity: 0.9;
 }
-.footer-basic .copyright {
+.footer-basic .copyright 
+{
     text-align: center;
     font-size: 15px;
     color: grey;
@@ -206,12 +241,14 @@ input[type=submit]:hover {
     font-weight: bolder;
 }
 /* CARDS */
-.cards {
+.cards 
+{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
-.card {
+.card 
+{
     margin: 20px;
     padding: 20px;
     width: 75%;
@@ -221,18 +258,21 @@ input[type=submit]:hover {
     box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
     transition: all 0.2s;
 }
-.card:hover {
+.card:hover 
+{
     box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
     transform: scale(1.01);
 }
 .card__link,
 .card__exit,
-.card__icon {
+.card__icon 
+{
     position: relative;
     text-decoration: none;
     color: rgba(255, 255, 255, 0.9);
 }
-.card__link::after {
+.card__link::after 
+{
     position: absolute;
     top: 25px;
     left: 0;
@@ -242,40 +282,50 @@ input[type=submit]:hover {
     background-color: rgba(255, 255, 255, 0.6);
     transition: all 0.5s;
 }
-.card__link:hover::after {
+.card__link:hover::after 
+{
     width: 100%;
 }
-.card__exit {
+.card__exit 
+{
     grid-row: 1/2;
     justify-self: end;
 }
-.card__icon {
+.card__icon 
+{
     grid-row: 2/3;
     font-size: 30px;
 }
-.card__title {
+.card__title 
+{
     grid-row: 3/4;
     font-weight: 400;
     color: #ffffff;
     margin: 10px;
 }
-.card__apply {
+.card__apply 
+{
     grid-row: 4/5;
     align-self: center;
 }
 /* CARD BACKGROUNDS */
-.card-1 {
+.card-1 
+{
     background: radial-gradient(#1fe4f5, #3fbafe);
 }
-.card-2 {
+.card-2 
+{
     background: radial-gradient(#fbc1cc, #fa99b2);
 }
-.card-3 {
+.card-3 
+{
     background: radial-gradient(#76b2fe, #b69efe);
 }
-.card-4 {
+.card-4 
+{
     background: radial-gradient(#60efbc, #58d5c9);
 }
-.card-5 {
+.card-5 
+{
     background: radial-gradient(#f588d8, #c0a3e5);
 }

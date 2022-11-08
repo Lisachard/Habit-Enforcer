@@ -78,7 +78,12 @@ if (isset($_POST['register'])) {
 
 if (isset($_POST['login'])) {
     $bdd->loginMember();
-    Redirect("./login.php");
+    Redirect("./home.php");
+}
+
+if (isset($_POST['deconnexion'])) {
+    session_destroy();
+    Redirect("./home.php");
 }
 
 ?>

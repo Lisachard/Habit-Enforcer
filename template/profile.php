@@ -18,6 +18,7 @@ session_start()
     <header class="site-header">
         <div class="wrapper site-header__wrapper">
             <img class="brand" src="../assets/img/HabitudeLogo.png" alt="Brand Logo"/>
+            <a href="heade.php">Home</a>
             <p>Classement</p>
             <p>En savoir +</p>
             <img src="../assets/img/Notification.png" alt="Notification logo">

@@ -10,8 +10,8 @@ session_start()
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://use.typekit.net/bdt8ycj.css">  
-    <link rel="stylesheet" href="../assets/header.css">
-    <title>Header</title>
+    <link rel="stylesheet" href="../assets/profile.css">
+    <title>Profile</title>
 </head>
 
 <body>
@@ -21,9 +21,10 @@ session_start()
             <p>Classement</p>
             <p>En savoir +</p>
             <img src="../assets/img/Notification.png" alt="Notification logo">
-            <a href="profile.php"><img src="<?php echo $_SESSION['profile_picture'] . "60/" . $_SESSION['pseudo']; ?>"></a>
         </div>
     </header>
+
+    <p>Nice to see you again <strong><?php echo $_SESSION['pseudo']?><strong> :)</p>
 </body>
 
 </html>

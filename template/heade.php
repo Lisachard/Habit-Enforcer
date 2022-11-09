@@ -17,10 +17,10 @@ session_start()
 <body>
     <header class="site-header">
         <div class="wrapper site-header__wrapper">
-            <a class="brand"><img src="../assets/img/HabitudeLogo.png" alt="Brand Logo"/></a>
+            <img class="brand" src="../assets/img/HabitudeLogo.png" alt="Brand Logo"/>
             <p>Classement</p>
             <p>En savoir +</p>
-            <nav class="nav"><img src="../assets/img/Notification.png" alt="Notification logo"></nav>
+            <img src="../assets/img/Notification.png" alt="Notification logo">
             <img src="<?php echo $_SESSION['profile_picture'] . "60/" . $_SESSION['pseudo']; ?>">
         </div>
     </header>

@@ -1,2 +1,2 @@
 # Habit-Enforcer
-grthyfdsgtrhey
+Racine du projet (pour le moment) : ./templates 🕵️

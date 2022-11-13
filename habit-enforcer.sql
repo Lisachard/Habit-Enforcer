@@ -1,22 +1,21 @@
-CREATE TABLE `Groupe`(
-    `group_id` INT NOT NULL,
+CREATE TABLE `Party`(
+    `party_id` INT NOT NULL,
     `score` INT NOT NULL,
-    `member_id` CHAR(36) NOT NULL,
-    PRIMARY KEY(`group_id`)
+    PRIMARY KEY(`party_id`)
 );
 
-CREATE TABLE `Membre`(
+CREATE TABLE `Member`(
     `member_id` CHAR(36) NOT NULL,
     `pseudo` CHAR(255) NOT NULL,
     `email` CHAR(255) NOT NULL,
     `password` CHAR(255) NOT NULL,
     `profile_picture` CHAR(255) NOT NULL,
-    `group_id` INT NULL,
+    `party_id` INT NULL,
     PRIMARY KEY(`member_id`),
-    FOREIGN KEY(`group_id`) REFERENCES `Groupe`(`group_id`) ON DELETE SET NULL
+    FOREIGN KEY(`party_id`) REFERENCES `Party`(`party_id`) ON DELETE SET NULL
 );
 
-CREATE TABLE `Habitude`(
+CREATE TABLE `Habit`(
     `habit_id` INT NOT NULL,
     `label` CHAR(255) NOT NULL,
     `difficulty` SMALLINT NOT NULL,

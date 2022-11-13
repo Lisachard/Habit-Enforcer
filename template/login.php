@@ -14,7 +14,7 @@ include "meta.php"
         <?php if (isset($_SESSION['LOGGED_USER'])) : ?>
             <div class="card__side" style="min-width:100%;">
                 <div class="content" style="align-items:center;">
-                    <img src="<?php echo $_SESSION['profile_picture'] . "100/" . $_SESSION['pseudo']?>" class="pp">
+                    <img src="<?php echo $_SESSION['profile_picture'] . $_SESSION['pseudo']?>" class="pp">
                     <p>Bienvenue <strong><?php echo $_SESSION['pseudo']?></strong></p>
                 </div>
             </div>

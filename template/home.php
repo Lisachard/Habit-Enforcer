@@ -1,6 +1,4 @@
-<?php 
-require("./authentification.php");
-?>
+<?php require('./authentification.php') ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,17 +7,60 @@ require("./authentification.php");
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/test.css">
+    <script src="../script/test.js" defer></script>
     <title>Home</title>
 </head>
 
 <body>
+
     <?php if (isset($_SESSION['LOGGED_USER'])) : ?>
-        <h1>Salut <?php echo $_SESSION['pseudo']; ?></h1>
-        <form action="./authentification.php" method="post">
+        <header></header>
+        <div class="board">
+            <section class="left">
+                <?php if (isset($_SESSION['party_id'])) : ?>
+                    <h1>Bienvenue dans le groupe n°<?php echo $_SESSION['party_id'] ?></h1>
+                <?php else : ?>
+                    <form action="home.php" method="post">
+                        <input type="submit" name="createParty" value="Create a Party">
+                        <input type="submit" name="checkInvitation" value="Check Invitation">
+                    </form>
+                <?php endif; ?>
+            </section>
+            <section class="right">
+                <?php if (isset($_SESSION['party_id'])) : ?>
+                    <?php if (isset($_GET['makeInvitation'])) : ?>
+                        <div>
+                            <form action="home.php" method="get">
+                                <input type="hidden" value="true" name="makeInvitation">
+                                <input type="text" name="searching" id="searchbar" value="<?php echo $_GET['searching'] ?>" placeholder="Search your Friends here">
+                            </form>
+                            <form action="home.php?makeInvitation=true&searching=<?php echo $_GET['searching'] ?>" method="post">
+                            <?php
+                            if (isset($_GET['searching'])) {
+                                $bdd->searchFriend();
+                            }
+                            ?>
+                            </form>
+
+                        </div>
+                    <?php else : ?>
+                        <form action="home.php" method="get">
+                            <input type="hidden" name="searching">
+                            <button type="submit" value="true" name="makeInvitation">Invite Your Friends</button>
+                        </form>
+                    <?php endif ?>
+                <?php else : ?>
+                    <h2>Vous ne faites actuellement parti d'aucun groupe 🫤</h2>
+                <?php endif; ?>
+            </section>
+        </div>
+
+        <form action="./home.php" method="post">
             <input type="submit" name="deconnexion" value="Deconnexion">
         </form>
-        <?php else : ?>
-            <?php Redirect("./login.php") ?>
+    <?php else : ?>
+        <?php Redirect("./login.php") ?>
     <?php endif; ?>
 </body>
 

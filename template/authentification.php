@@ -7,6 +7,13 @@ function Redirect($url, $permanent = false)
     exit();
 }
 
+function debug_to_console($data) {
+    $output = $data;
+    if (is_array($output))
+        $output = implode(',', $output);
+
+    echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
+}
 
 class BDD
 {
@@ -20,6 +27,8 @@ class BDD
     public function __construct() {
         try {
             $this->database = new PDO("mysql:host=$this->host;dbname=$this->dataname", $this->user, $this->password);
+            $this->database->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            $this->database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             echo $e->getMessage();
             die;
@@ -49,19 +58,39 @@ class BDD
     }
 
     public function createParty() {
+        // create the party
         $sql = "INSERT INTO Party (score) VALUES (?)";
         $sentence = $this->database->prepare($sql);
-        
         $sentence->execute([0]);
 
+        // add the chef to the party
         $_SESSION['party_id'] = $this->database->lastInsertId();
-
-        echo "<script>console.log('Debug Objects: " . $_SESSION['party_id'] . "' );</script>";
-        
         $sql = "UPDATE Member SET party_id = " . $_SESSION['party_id'] . " WHERE member_id = ?";
         $sentence = $this->database->prepare($sql);
-
         $sentence->execute([$_SESSION['member_id']]);
+    }
+
+    public function inviteToTheParty() {
+        
+    }
+
+    public function searchFriend() {
+        $sql = "SELECT * FROM Member WHERE pseudo LIKE :search";
+
+        $sentence = $this->database->prepare($sql);
+
+        $search = '%' . strip_tags($_GET['searching']) . '%';
+        $sentence->bindParam(":search", $search);
+        $sentence->execute();
+        // fetch "sans index" 😉
+        $sentence->setFetchMode(PDO::FETCH_ASSOC);
+        $result = $sentence->fetchAll();
+        foreach ($result as $row) {
+            echo '<div class="card">' . $row['pseudo'] . '<button type="submit" name="membre" value=' . $row['member_id'] . '>Add</button>' . '</div>';
+            debug_to_console($row);
+        }
+        
+        
     }
 
     public function loginMember() {
@@ -101,10 +130,10 @@ if (isset($_POST['login'])) {
 
 if (isset($_POST['deconnexion'])) {
     session_destroy();
-    Redirect("./home.php", true);
 }
 
 if (isset($_POST['createParty'])) {
     $bdd->createParty();
 }
+
 ?>

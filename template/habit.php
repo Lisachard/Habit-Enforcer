@@ -4,7 +4,6 @@ require("./authentification.php");
 
 <?php
 if (isset($_POST['addHabit'])) {
-    debug_to_console($_SESSION['member_id']);
     $bdd->addHabit();
 }
 ?>

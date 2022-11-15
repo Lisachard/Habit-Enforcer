@@ -16,6 +16,10 @@ function debug_to_console($data)
     echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
 }
 
+$temps = date('d/m/Y @ H:i');
+
+debug_to_console($temps);
+
 class BDD
 {
 
@@ -141,6 +145,22 @@ class BDD
             echo $e->getMessage();
             die;
         }
+    }
+
+    public function checkLastConnexion()
+    {
+        $lastConnexion = date('d/m/Y @ H:i'); // checking last connexion
+        $actualConnexion = date('d/m/Y @ H:i');
+        $dateDiff = abs($actualConnexion-$lastConnexion);
+        // if 'H' date - 'H' dernière connexion > 24;
+        if ($dateDiff > 24) {
+            removePoint();
+        }
+    }
+
+    public function removePoint()
+    {
+
     }
 }
 

@@ -160,7 +160,7 @@ class BDD
 
     public function removePoint()
     {
-
+        
     }
 }
 

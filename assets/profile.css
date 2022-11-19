@@ -1,0 +1,21 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: permanent-marker, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+}
+
+.site-header__wrapper {
+    height: 5vw;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    background: white;
+}
+
+img {
+    max-width: 50px;
+}

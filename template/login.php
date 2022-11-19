@@ -9,7 +9,6 @@ include "meta.php"
 ?>
 
 <body>
-
     <div class="card">
         <?php if (isset($_SESSION['LOGGED_USER'])) : ?>
             <div class="card__side" style="min-width:100%;">

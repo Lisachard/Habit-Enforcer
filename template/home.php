@@ -1,4 +1,4 @@
-<?php require('./authentification.php') ?>
+<?php require("./authentification.php") ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,12 +7,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/test.css">
+    <link rel="stylesheet" href="../assets/home.css ">
+    <link rel="icon" href="../assets/img/HabitudeLogo.ico" type="image/ico">
     <script src="../script/test.js" defer></script>
     <title>Home</title>
 </head>
 
 <body>
+
+    <?php
+    $title = "Login";
+    include "heade.php"
+    ?>
 
     <?php if (isset($_SESSION['LOGGED_USER'])) : ?>
         <header></header>
@@ -23,15 +29,15 @@
                 <?php else : ?>
                     <form action="home.php" method="post">
                         <input type="text" name="partyName">
-                        <input type="submit" name="createParty" value="Create a Party">
-                        <input type="submit" name="checkInvitation" value="Check Invitation">
+                        <input class="box" type="submit" name="createParty" value="Create a Party">
+                        <input class="box" type="submit" name="checkInvitation" value="Check Invitation">
                     </form>
                     <form action="./home.php" method="post">
                         <?php for ($i = 0; $i < count($_SESSION['invitation_party_id']); $i++) : ?>
                             <?php if ($_SESSION['invitation_party_id'][$i] != NULL) : ?>
                                 <div class="card">
                                     <?php echo $_SESSION['invitation_party_name'][$i] ?>
-                                    <button type="submit" name="party" value="<?php echo $_SESSION['invitation_party_id'][$i]?>">Join</button>
+                                    <button type="submit" name="party" value="<?php echo $_SESSION['invitation_party_id'][$i] ?>">Join</button>
                                 </div>
                             <?php endif ?>
                         <?php endfor ?>
@@ -67,10 +73,6 @@
                 <?php endif; ?>
             </section>
         </div>
-
-        <form action="./home.php" method="post">
-            <input type="submit" name="deconnexion" value="Deconnexion">
-        </form>
     <?php else : ?>
         <?php Redirect("./login.php") ?>
     <?php endif; ?>

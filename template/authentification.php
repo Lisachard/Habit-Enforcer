@@ -197,10 +197,6 @@ class BDD
         $lastConnexion = date('d/m/Y @ H:i'); // checking last connexion
         $actualConnexion = date('d/m/Y @ H:i');
         $dateDiff = abs($actualConnexion-$lastConnexion);
-        // if 'H' date - 'H' dernière connexion > 24;
-        if ($dateDiff > 24) {
-            removePoint();
-        }
     }
 
     public function removePoint()

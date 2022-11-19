@@ -14,6 +14,7 @@ if (isset($_POST['addHabit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://use.typekit.net/bdt8ycj.css">  
     <link rel="stylesheet" href="../assets/habit.css">
+    <link rel="icon" href="../assets/img/HabitudeLogo.ico" type="image/ico">
     <title>Header</title>
 </head>
 

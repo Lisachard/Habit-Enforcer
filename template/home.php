@@ -1,4 +1,4 @@
-<?php require('./authentification.php') ?>
+<?php require("./authentification.php")?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,12 +7,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/test.css">
+    <link rel="stylesheet" href="../assets/home.css ">
+    <link rel="icon" href="../assets/img/HabitudeLogo.ico" type="image/ico">
     <script src="../script/test.js" defer></script>
     <title>Home</title>
 </head>
 
 <body>
+
+    <?php
+    $title = "Login";   
+    include "heade.php"
+    ?>
 
     <?php if (isset($_SESSION['LOGGED_USER'])) : ?>
         <header></header>
@@ -22,8 +28,8 @@
                     <h1>Bienvenue dans le groupe n°<?php echo $_SESSION['party_id'] ?></h1>
                 <?php else : ?>
                     <form action="home.php" method="post">
-                        <input type="submit" name="createParty" value="Create a Party">
-                        <input type="submit" name="checkInvitation" value="Check Invitation">
+                        <input class="box" type="submit" name="createParty" value="Create a Party">
+                        <input class="box" type="submit" name="checkInvitation" value="Check Invitation">
                     </form>
                 <?php endif; ?>
             </section>
@@ -55,10 +61,6 @@
                 <?php endif; ?>
             </section>
         </div>
-
-        <form action="./home.php" method="post">
-            <input type="submit" name="deconnexion" value="Deconnexion">
-        </form>
     <?php else : ?>
         <?php Redirect("./login.php") ?>
     <?php endif; ?>

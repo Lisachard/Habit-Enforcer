@@ -1,11 +1,8 @@
-<?php session_start(); ?>
-
-<!DOCTYPE html>
-<html lang="en">
-
 <?php
+session_start();
+$path = "../assets/form.css";
 $title = "Login";
-include "meta.php"
+include "head.php";
 ?>
 
 <body>

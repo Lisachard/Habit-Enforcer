@@ -14,11 +14,7 @@
 </head>
 
 <body>
-
-    <?php
-    $title = "Login";   
-    include "heade.php"
-    ?>
+    <?php include "heade.php"?>
 
     <?php if (isset($_SESSION['LOGGED_USER'])) : ?>
         <header></header>

@@ -12,8 +12,8 @@ The goal of our website is quite simple : users create one habit per day in a gr
 
 The website allows the user to do few things on their own.
 
-• Account : 
-    ◦ Register
+- Account : 
+    - Register
     ◦ Login
     ◦ Modify profile
     ◦ Log out

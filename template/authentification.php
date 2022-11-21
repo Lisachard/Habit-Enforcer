@@ -71,13 +71,13 @@ class BDD
         $sentence = $this->database->prepare($sql);
 
         $name = "";
-        
+
         if (isset($_POST['partyName'])) {
             $name = strip_tags($_POST['partyName']);
         } else {
             $name = $_SESSION['pseudo'] . "'s Party";
         }
-        
+
         $sentence->execute([$name, 0]);
 
         // add the chef to the party
@@ -88,19 +88,21 @@ class BDD
         $sentence->execute([$_SESSION['party_id'], $_SESSION['member_id']]);
     }
 
-    public function inviteToTheParty() {
+    public function inviteToTheParty()
+    {
         $sql = "SELECT email FROM Member WHERE member_id = ?";
         $sentence = $this->database->prepare($sql);
         $sentence->execute([$_POST['membre']]);
         $result = $sentence->fetch();
-        
+
         $sql = "INSERT INTO Invitation (email, invite_party_id) VALUES (?, ?)";
         $sentence = $this->database->prepare($sql);
         $sentence->execute([$result['email'], $_SESSION['party_id']]);
-        
+
     }
 
-    public function joinParty() {
+    public function joinParty()
+    {
         // Join the party
         $sql = "UPDATE Member SET party_id = ? WHERE member_id = ?";
         $sentence = $this->database->prepare($sql);
@@ -110,7 +112,7 @@ class BDD
         // Get the party name
         $sql = "SELECT * Party WHERE party_id = ?";
         $sentence = $this->database->prepare($sql);
-        
+
         $sentence->execute([$_SESSION['party_id']]);
 
         $result = $sentence->fetch();
@@ -160,7 +162,8 @@ class BDD
         }
     }
 
-    public function leaveParty() {
+    public function leaveParty()
+    {
         $sql = "UPDATE Member SET party_id = NULL WHERE member_id = ?";
         $sentence = $this->database->prepare($sql);
         $sentence->execute([$_SESSION['member_id']]);
@@ -204,7 +207,7 @@ class BDD
         $identifiant = strip_tags($_POST['identifiant']);
         $_SESSION['invitation_party_id'] = [];
         $_SESSION['invitation_party_name'] = [];
-        
+
 
         try {
             $sentence->execute([$identifiant]);
@@ -227,7 +230,8 @@ class BDD
         }
     }
 
-    public function listParty() {
+    public function listParty()
+    {
         $sql = "SELECT * FROM Party ORDER BY score DESC";
         $sentence = $this->database->prepare($sql);
 
@@ -253,44 +257,24 @@ class BDD
                 $sentence = $this->database->prepare($sql);
                 $sentence->execute([$row['habit_id']]);
             }
-        }   
+        }
     }
 
-    public function addScore() {
+    public function addScore()
+    {
         $sql = "UPDATE Party SET score = score + 1 * ? WHERE party_id = ?";
         $sentence = $this->database->prepare($sql);
         $sentence->execute([$_POST['difficulty'], $_SESSION['party_id']]);
 
         $sql = "UPDATE habit SET checked = 1 WHERE habit_id = ?";
         $sentence = $this->database->prepare($sql);
-        $sentence->execute([$_POST['notchecked']]); 
+        $sentence->execute([$_POST['notchecked']]);
 
     }
 
-    public function removeScore() {
-        $sql = "UPDATE Party SET score = score - 1 * ? WHERE party_id = ?";
-        $sentence = $this->database->prepare($sql);
-        $sentence->execute([$_POST['difficulty'], $_SESSION['party_id']]);
-        
-        $sql = "UPDATE habit SET checked = 0 WHERE habit_id = ?";
-        $sentence = $this->database->prepare($sql);
-        $sentence->execute([$_POST['checked']]);
+    public function destroyParty()
+    {
 
-        $sql = "SELECT score FROM Party WHERE party_id = ?";
-        $sentence = $this->database->prepare($sql);
-        $sentence->execute([$_SESSION['party_id']]);
-        $sentence->setFetchMode(PDO::FETCH_ASSOC);
-        $result = $sentence->fetch();
-        if ($result['score'] < 0) {
-            $sql = "UPDATE Member SET party_id = NULL WHERE party_id = ?";
-            $sentence = $this->database->prepare($sql);
-            $sentence->execute([$_SESSION['party_id']]);
-            $this->destroyParty();
-        }
-    }
-
-    public function destroyParty() {
-        
         $sql = "DELETE FROM Party WHERE party_id = ?";
         $sentence = $this->database->prepare($sql);
         $sentence->execute([$_SESSION['party_id']]);

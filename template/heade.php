@@ -7,10 +7,10 @@ include "head.php";
 <body>
     <header class="site-header">
         <div class="wrapper site-header__wrapper">
-            <p><a href="home.php">Home</a>
+            <p><a class="redirection" href="home.php">Home</a>
             <p>
-            <p><a href="ranking.php">Ranking</a></p>
-            <a href="credits.php">Find out more</a>
+            <p><a class="redirection" href="ranking.php">Ranking</a></p>
+            <a class="redirection" href="credits.php">Find out more</a>
             <p class="textHeader">🔔
             <p>
             <div class="dropdown">

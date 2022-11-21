@@ -5,7 +5,7 @@
 
 This project was created by three second year students of computer sciences. As part of our object-oriented programming (OOP) lessons in PHP, our final exam is a project which consists in the making of an inspired Habitica website. 🏗️
 
-The goal of our website is quite simple : users create one habit per day in a group with other members and have to check it to fulfill it. It then earns points to the party or removes it if the habit is not checked by the end of the chosen period.  
+The goal of our website is quite simple : users create one habit per day in a group with other members and have to check it to fulfill it. It then earns points to the party or removes it if the habit is not checked by the end of the chosen period. ✔️  
 
 
 # Fonctionalities : 

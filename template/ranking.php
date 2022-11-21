@@ -7,14 +7,11 @@ include "head.php";
 
 <body>
     <?php include "heade.php";
-    ?>
-
-    <?php foreach ($bdd->listParty() as $party): ?>
+    foreach ($bdd->listParty() as $party): ?>
     <div>
         <?php echo $party['name'] ?>
     </div>
     <?php endforeach; ?>
-
 </body>
 
 </html>

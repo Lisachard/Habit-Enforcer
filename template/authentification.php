@@ -256,28 +256,6 @@ class BDD
 
     }
 
-    public function removeScore() {
-        $sql = "UPDATE Party SET score = score - 1 * ? WHERE party_id = ?";
-        $sentence = $this->database->prepare($sql);
-        $sentence->execute([$_POST['difficulty'], $_SESSION['party_id']]);
-        
-        $sql = "UPDATE habit SET checked = 0 WHERE habit_id = ?";
-        $sentence = $this->database->prepare($sql);
-        $sentence->execute([$_POST['checked']]);
-
-        $sql = "SELECT score FROM Party WHERE party_id = ?";
-        $sentence = $this->database->prepare($sql);
-        $sentence->execute([$_SESSION['party_id']]);
-        $sentence->setFetchMode(PDO::FETCH_ASSOC);
-        $result = $sentence->fetch();
-        if ($result['score'] < 0) {
-            $sql = "UPDATE Member SET party_id = NULL WHERE party_id = ?";
-            $sentence = $this->database->prepare($sql);
-            $sentence->execute([$_SESSION['party_id']]);
-            $this->destroyParty();
-        }
-    }
-
     public function destroyParty() {
         
         $sql = "DELETE FROM Party WHERE party_id = ?";

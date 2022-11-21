@@ -65,17 +65,13 @@ The project belongs to its authors. ✍️
 
 # Instructions and Keys : 
 
-- First, download and unzip `Tetris.zip`.
-- Then, launch UnityHub and open new Project with the Tetris unzipped folder. 
-- Install the compatible version of Unity.
-- You should now be able to open the project and click on the Tetris scene.
-- And... click on the play sign to run the game !
+- Git clone the repository
+- On XAMPP :
+    - Copy Path where you clone the project at `\Habit-Enforcer`
+    - In XAMPP window, go to config file `httpd.conf` for the Apache server
 
-You should also keep in mind to use the directional arrows of your keyboard to move the different tetrominos scrolling down : 
-- ➡️ allows the player to slide the tetramino to the right of the game screen
-- ⬅️ allows the player to slide the tetramino to the left of the game screen
-- ⬇️ allows the player to accelerate the fall of the tetramino on the game screen
-- `Space bar` allows the player to rotate the tetramino clockwise
+    - In httpd.conf, modify `Document.root` and its repository 
+    - Now run Apache and MySQL Server 😉
 
 Is everything clear ? Alright ! 🎉
 

@@ -44,7 +44,7 @@
                     }
                 ?></h2>
                 <?php if ($habit['checked']) : ?>
-                    <h2><input type="checkbox" value="<?php echo $habit['habit_id'];?>" id="<?php echo $habit['habit_id'];?>" name="checked" onchange="document.getElementById('<?php echo $habit['habit_id'];?>').checked = true; submit();" checked></h2>
+                    <h2><input type="checkbox" name="checked" disabled checked></h2>
                     <?php else : ?>
                         <h2><input type="checkbox" value="<?php echo $habit['habit_id'];?>" name="notchecked" onchange="submit();"></h2>
                 <?php endif; ?>

@@ -6,12 +6,15 @@ include "head.php";
 ?>
 
 <body>
-    <?php include "heade.php";
-    foreach ($bdd->listParty() as $party): ?>
-    <div>
-        <?php echo $party['name'] ?>
+    <?php include "heade.php"; ?>
+    <div class="centering">
+        <?php foreach ($bdd->listParty() as $party): ?>
+        <div>
+            <?php echo $party['name'] ?>
+        </div>
+
+        <?php endforeach; ?>
     </div>
-    <?php endforeach; ?>
 </body>
 
 </html>

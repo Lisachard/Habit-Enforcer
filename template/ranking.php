@@ -7,12 +7,11 @@ include "head.php";
 
 <body>
     <?php include "heade.php"; ?>
-    <div class="centering">
+    <div class="centeringBlocks">
         <?php foreach ($bdd->listParty() as $party): ?>
         <div>
             <?php echo $party['name'] ?>
         </div>
-
         <?php endforeach; ?>
     </div>
 </body>

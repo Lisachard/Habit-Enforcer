@@ -14,22 +14,22 @@ The website allows the user to do few things on their own.
 
 - Account : 
     - Register
-    ◦ Login
-    ◦ Modify profile
-    ◦ Log out
+    - Login
+    - Modify profile
+    - Log out
 
-• Group :
-    ◦ Create a party
-    ◦ Invite members
-    ◦ Join a party
-    ◦ Look out for group ranking
+- Group :
+    - Create a party
+    - Invite members
+    - Join a party
+    - Look out for group ranking
 
-• Habit : 
-    ◦ Create one activity per day
-    ◦ Specify its name, periodicity, difficulty, color
-    ◦ Check activity's fulfillment
-    ◦ Add point to the group
-    ◦ Remove point to the group
+- Habit : 
+    - Create one activity per day
+    - Specify its name, periodicity, difficulty, color
+    - Check activity's fulfillment
+    - Add point to the group
+    - Remove point to the group
 
 
 # User Experience (UX) : 

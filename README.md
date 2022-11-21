@@ -20,9 +20,9 @@ The website allows the user to do few things on their own.
 
 - Group :
     - Create a party
-    - Invite members
+    - Invite members to a party
     - Join a party
-    - Look out for group ranking
+    - Look out for groups ranking
 
 - Habit : 
     - Create one activity per day
@@ -31,11 +31,17 @@ The website allows the user to do few things on their own.
     - Add point to the group
     - Remove point to the group
 
+- Credits : 
+    - Actknowledge writers and their code's property
+
 
 # User Experience (UX) : 
 
 We choose to make an UX oriented approach. Likewise, you will find the wireframes of the website's main pages and its tree structure linked to the rendering of our project.
 
+The command `cd assets/img/UX` also gives you access to :
+- `Home.png`
+- 
 
 # Property : 
 
@@ -56,6 +62,7 @@ The project belongs to its authors. ✍️
 - HTML 📄
 - CSS 🖌️
 - JS ⚙️ 
+- UX (Wireframes and tree structure) 📐
 
 
 # Credits :

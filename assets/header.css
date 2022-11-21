@@ -71,7 +71,7 @@ a::before, .drop::before {
   z-index: -1;
 }
 
-a:hover {
+a:hover, .drop:hover {
   color: rgb(26, 85, 195);
   font-size: 1.6em;
 }

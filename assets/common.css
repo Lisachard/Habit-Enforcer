@@ -7,3 +7,16 @@
 body {
     background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
 }
+
+.centeringBlocks {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 90vh; /* calc(100vh - (.site-header__wrapper)) */
+    color:#03224c;
+}
+
+.secondCreditBlock {
+    margin: 50px;
+}

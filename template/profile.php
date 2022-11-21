@@ -14,7 +14,7 @@ include "head.php";
     <form method="post">
         <input class="box" type="text" placeholder="Nickname" name="nickname" value="" required>
         <input class="box" type="email" placeholder="Email" name="email" value="" required>
-        <button class="box" type="submit" name="modification">Modifier</button>
+        <button class="box" type="submit" name="modification">Save modifications</button>
     </form>
 </body>
 

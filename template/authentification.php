@@ -246,7 +246,6 @@ class BDD
     }
 
     public function addScore() {
-        var_dump($_POST);
         $sql = "UPDATE Party SET score = score + 1 * ? WHERE party_id = ?";
         $sentence = $this->database->prepare($sql);
         $sentence->execute([$_POST['difficulty'], $_SESSION['party_id']]);
@@ -262,12 +261,11 @@ class BDD
         $sentence = $this->database->prepare($sql);
         $sentence->execute([$_POST['difficulty'], $_SESSION['party_id']]);
         
-        var_dump($_POST);
         $sql = "UPDATE habit SET checked = 0 WHERE habit_id = ?";
         $sentence = $this->database->prepare($sql);
         $sentence->execute([$_POST['checked']]);
 
-        $sql = "SELECT Score FROM Party WHERE party_id = ?";
+        $sql = "SELECT score FROM Party WHERE party_id = ?";
         $sentence = $this->database->prepare($sql);
         $sentence->execute([$_SESSION['party_id']]);
         $sentence->setFetchMode(PDO::FETCH_ASSOC);

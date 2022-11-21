@@ -10,7 +10,7 @@
     <?php else: ?>
     <form action="home.php" method="post" style="visibility:visible;">
         <input class="box" type="text" name="label" placeholder="Activity" required>
-        <select class="box" typeF="periodicities" name="periodicity" required value="Periodicity">
+        <select class="box" type="periodicities" name="periodicity" required value="Periodicity">
             <option selected hidden>Periodicity</option>
             <option value="daily">Daily</option>
             <option value="weekly">Weekly</option>
@@ -33,22 +33,28 @@
         <?php foreach ($bdd->readHabit() as $habit): ?>
         <div class="card" style="border-top: solid <?php echo $habit['color'] ?>; width: 30vw; display: flex;">
             <input type="hidden" name="difficulty" value="<?php echo $habit['difficulty'] ?>">
-                <h1><?php echo $habit['label'] ?></h1>
-                <h2><?php echo str_repeat("⭐",  $habit['difficulty']) ?></h2>
-                <h2>
-                    <?php 
-                    if ($habit['is_daily']) {
-                        echo "Daily";
-                    } else {
-                        echo "Weekly";
-                    }
-                ?></h2>
-                <?php if ($habit['checked']) : ?>
-                    <h2><input type="checkbox" name="checked" disabled checked></h2>
-                    <?php else : ?>
-                        <h2><input type="checkbox" value="<?php echo $habit['habit_id'];?>" name="notchecked" onchange="submit();"></h2>
-                <?php endif; ?>
-            </div>
+            <h1>
+                <?php echo $habit['label'] ?>
+            </h1>
+            <h2>
+                <?php echo str_repeat("⭐", $habit['difficulty']) ?>
+            </h2>
+            <h2>
+                <?php
+            if ($habit['is_daily']) {
+                echo "Daily";
+            } else {
+                echo "Weekly";
+            }
+                    ?>
+            </h2>
+            <?php if ($habit['checked']): ?>
+            <h2><input type="checkbox" name="checked" disabled checked></h2>
+            <?php else: ?>
+            <h2><input type="checkbox" value="<?php echo $habit['habit_id']; ?>" name="notchecked" onchange="submit();">
+            </h2>
+            <?php endif; ?>
+        </div>
         <?php endforeach; ?>
     </form>
 </div>

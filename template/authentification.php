@@ -67,19 +67,42 @@ class BDD
     public function createParty()
     {
         // create the party
-        $sql = "INSERT INTO Party (score) VALUES (?)";
+        $sql = "INSERT INTO Party (name, score) VALUES (?, ?)";
         $sentence = $this->database->prepare($sql);
-        $sentence->execute([0]);
+
+        $name = "";
+        
+        if (isset($_POST['partyName'])) {
+            $name = strip_tags($_POST['partyName']);
+        } else {
+            $name = $_SESSION['pseudo'] . "'s Party";
+        }
+        
+        $sentence->execute([$name, 0]);
 
         // add the chef to the party
         $_SESSION['party_id'] = $this->database->lastInsertId();
+        $_SESSION['party_name'] = $name;
         $sql = "UPDATE Member SET party_id = ? WHERE member_id = ?";
         $sentence = $this->database->prepare($sql);
         $sentence->execute([$_SESSION['party_id'], $_SESSION['member_id']]);
     }
 
-    public function inviteToTheParty()
-    {
+    public function inviteToTheParty() {
+        $sql = "SELECT email FROM Member WHERE member_id = ?";
+        $sentence = $this->database->prepare($sql);
+        $sentence->execute([$_POST['membre']]);
+        $result = $sentence->fetch();
+        
+        $sql = "INSERT INTO Invitation (email, invite_party_id) VALUES (?, ?)";
+        $sentence = $this->database->prepare($sql);
+        $sentence->execute([$result['email'], $_SESSION['party_id']]);
+    }
+
+    public function joinParty() {
+        $sql = "UPDATE Member SET party_id = ? WHERE member_id = ?";
+        $sentence = $this->database->prepare($sql);
+        $sentence->execute([$_POST['party'], $_SESSION['member_id']]);
     }
 
     public function addHabit()
@@ -101,45 +124,67 @@ class BDD
         // fetch "sans index" 😉
         $sentence->setFetchMode(PDO::FETCH_ASSOC);
         $result = $sentence->fetchall();
-        foreach ($result as $row) {
-            echo '<div style="background-color:' . $row['color'] . '">' . $row['label'] . '</div>';
+        return $result;
+    }
+
+    public function alreadyCreateHabit()
+    {
+        $sql = "SELECT * FROM Habit WHERE member_id = ? AND created_at BETWEEN CURDATE() AND CURDATE() + INTERVAL 1 DAY";
+        $sentence = $this->database->prepare($sql);
+
+        $sentence->execute([$_SESSION['member_id']]);
+        // fetch "sans index" 😉
+        $sentence->setFetchMode(PDO::FETCH_ASSOC);
+        $result = $sentence->fetchall();
+        if (empty($result)) {
+            return false;
+        } else {
+            return true;
         }
     }
 
     public function searchFriend()
     {
-        $sql = "SELECT * FROM Member WHERE pseudo LIKE :search";
+        $sql = "SELECT * FROM Member WHERE pseudo LIKE :search AND NOT member_id = :id";
 
         $sentence = $this->database->prepare($sql);
 
         $search = '%' . strip_tags($_GET['searching']) . '%';
         $sentence->bindParam(":search", $search);
+        $sentence->bindParam(":id", $_SESSION['member_id']);
         $sentence->execute();
         // fetch "sans index" 😉
         $sentence->setFetchMode(PDO::FETCH_ASSOC);
         $result = $sentence->fetchAll();
         foreach ($result as $row) {
             echo '<div class="card">' . $row['pseudo'] . '<button type="submit" name="membre" value=' . $row['member_id'] . '>Add</button>' . '</div>';
-            debug_to_console($row);
         }
     }
 
     public function loginMember()
     {
-        $sql = "SELECT * FROM Member WHERE email = ?";
+        $sql = "SELECT * FROM member LEFT JOIN Invitation ON member.email = Invitation.email LEFT JOIN Party ON member.party_id = Party.party_id WHERE member.email = ?";
         $sentence = $this->database->prepare($sql);
 
         $identifiant = strip_tags($_POST['identifiant']);
+        $_SESSION['invitation_party_id'] = [];
+        $_SESSION['invitation_party_name'] = [];
+        
 
         try {
             $sentence->execute([$identifiant]);
-            $result = $sentence->fetch();
-            if (password_verify($_POST['password'], $result['password'])) {
-                $_SESSION['LOGGED_USER'] = true;
-                $_SESSION['member_id'] = $result['member_id'];
-                $_SESSION['profile_picture'] = $result['profile_picture'];
-                $_SESSION['pseudo'] = $result['pseudo'];
-                $_SESSION['party_id'] = $result['party_id'];
+            $result = $sentence->fetchall();
+            foreach ($result as $row) {
+                if (password_verify($_POST['password'], $row['password'])) {
+                    $_SESSION['LOGGED_USER'] = true;
+                    $_SESSION['member_id'] = $row['member_id'];
+                    $_SESSION['profile_picture'] = $row['profile_picture'];
+                    $_SESSION['pseudo'] = $row['pseudo'];
+                    $_SESSION['party_id'] = $row['party_id'];
+                    $_SESSION['party_name'] = $row['name'];
+                    array_push($_SESSION['invitation_party_id'], $row['invite_party_id']);
+                    array_push($_SESSION['invitation_party_name'], $row['name']);
+                }
             }
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -152,10 +197,6 @@ class BDD
         $lastConnexion = date('d/m/Y @ H:i'); // checking last connexion
         $actualConnexion = date('d/m/Y @ H:i');
         $dateDiff = abs($actualConnexion-$lastConnexion);
-        // if 'H' date - 'H' dernière connexion > 24;
-        if ($dateDiff > 24) {
-            removePoint();
-        }
     }
 
     public function removePoint()
@@ -182,4 +223,12 @@ if (isset($_POST['deconnexion'])) {
 
 if (isset($_POST['createParty'])) {
     $bdd->createParty();
+}
+
+if (isset($_POST['membre'])) {
+    $bdd->inviteToTheParty();
+}
+
+if (isset($_POST['party'])) {
+    $bdd->joinParty();
 }

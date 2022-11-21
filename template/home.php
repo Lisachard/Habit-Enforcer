@@ -13,11 +13,11 @@ include "head.php";
         <div class="board">
             <section class="left">
                 <?php if (isset($_SESSION['party_id'])): ?>
-                    <h1>Bienvenue dans le groupe <?php echo $_SESSION['party_name'] ?></h1>
+                    <h1>Welcome in the group <?php echo $_SESSION['party_name'] ?></h1>
                     <?php include_once "habit.php"; ?>
                 <?php else: ?>
                     <form action="home.php" method="post">
-                        <input type="text" name="partyName">
+                        <input class="box" type="text" name="partyName" placeholder="Party name">
                         <input class="box" type="submit" name="createParty" value="Create a Party">
                         <input class="box" type="submit" name="checkInvitation" value="Check Invitation">
                     </form>
@@ -53,10 +53,10 @@ include "head.php";
                     <?php else: ?>
                         <form action="home.php" method="get">
                             <input type="hidden" name="searching">
-                            <button type="submit" value="true" name="makeInvitation">Invite Your Friends</button>
+                            <button class="box" type="submit" value="true" name="makeInvitation">Invite Your Friends</button>
                         </form>
                         <form action="authentification.php" method="post">
-                            <button type="submit" name="leaveParty">Leave Party</button>
+                            <button class="box" type="submit" name="leaveParty">Leave Party</button>
                         </form>
                     <?php endif ?>
                 <?php else: ?>

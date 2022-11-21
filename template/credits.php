@@ -1,14 +1,12 @@
 <?php
 require("./authentification.php");
-$path = "../assets/credits.css";
+$path = "../assets/common.css";
 $title = "Credits";
 include "head.php";
 ?>
 
 <body>
-    <?php include "heade.php"?>
-
-    <p>Nice to see you again <strong><?php echo $_SESSION['pseudo']?><strong> :)</p>
+    <?php include "heade.php" ?>
 </body>
 
 </html>

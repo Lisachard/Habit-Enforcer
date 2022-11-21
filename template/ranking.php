@@ -1,6 +1,6 @@
 <?php
 require("./authentification.php");
-$path = "../assets/ranking.css";
+$path = "../assets/common.css";
 $title = "Ranking";
 include "head.php";
 ?>

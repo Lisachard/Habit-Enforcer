@@ -14,13 +14,13 @@ include "head.php";
             <p class="textHeader">🔔
             <p>
             <div class="dropdown">
-                <button class="dropbutton"><img
-                        src="<?php echo $_SESSION['profile_picture'] . $_SESSION['pseudo']; ?>"></button>
-                <div class="dropdown-content">
-                    <a href="profile.php">Modify profile</a>
-                    <form action="./authentification.php" method="post">
-                        <input type="submit" name="deconnexion" value="Deconnexion">
-                    </form>
+                <button class="dropbutton">
+                    <img src="<?php echo $_SESSION['profile_picture'] . $_SESSION['pseudo']; ?>"></button>
+                    <div class="dropdown-content">
+                        <a href="profile.php">Modify profile</a>
+                        <form class="deconnectButton" action="./authentification.php" method="post">
+                            <input type="submit" name="deconnexion" value="Deconnexion">
+                        </form>
                 </div>
             </div>
         </div>

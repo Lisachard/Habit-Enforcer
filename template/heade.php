@@ -18,11 +18,9 @@ include "head.php";
                         src="<?php echo $_SESSION['profile_picture'] . $_SESSION['pseudo']; ?>"></button>
                 <div class="dropdown-content">
                     <a href="profile.php">Modify profile</a>
-                    <a>
-                        <form action="./authentification.php" method="post">
-                            <input type="submit" name="deconnexion" value="Deconnexion">
-                        </form>
-                    </a>
+                    <form action="./authentification.php" method="post">
+                        <input type="submit" name="deconnexion" value="Deconnexion">
+                    </form>
                 </div>
             </div>
         </div>

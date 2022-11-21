@@ -28,6 +28,8 @@ include "head.php";
                     <input type="password" name="confirmPassword" placeholder="• • • • • • • •">
 
                     <input type="submit" name="register" value="Register">
+
+                    <a href="../template/login.php">Already have an account ?</a>
                 </div>
             </form>
         </div>

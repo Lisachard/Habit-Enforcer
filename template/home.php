@@ -49,7 +49,6 @@ include "head.php";
                                 }
                                 ?>
                             </form>
-
                         </div>
                     <?php else : ?>
                         <form action="home.php" method="get">

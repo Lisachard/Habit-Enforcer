@@ -227,6 +227,17 @@ class BDD
         }
     }
 
+    public function listParty() {
+        $sql = "SELECT * FROM Party ORDER BY score DESC";
+        $sentence = $this->database->prepare($sql);
+
+        $sentence->execute();
+        // fetch "sans index" 😉
+        $sentence->setFetchMode(PDO::FETCH_ASSOC);
+        $result = $sentence->fetchall();
+        return $result;
+    }
+
     public function checkNewDay()
     {
         $sql = "SELECT * FROM Habit";

@@ -6,9 +6,15 @@ include "head.php";
 ?>
 
 <body>
-    <?php include "heade.php"?>
+    <?php include "heade.php";
+    ?>
 
-    <p>Nice to see you again <strong><?php echo $_SESSION['pseudo']?><strong> :)</p>
+    <?php foreach ($bdd->listParty() as $party): ?>
+    <div>
+        <?php echo $party['name'] ?>
+    </div>
+    <?php endforeach; ?>
+
 </body>
 
 </html>

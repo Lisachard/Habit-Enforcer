@@ -97,22 +97,39 @@ class BDD
         $sql = "INSERT INTO Invitation (email, invite_party_id) VALUES (?, ?)";
         $sentence = $this->database->prepare($sql);
         $sentence->execute([$result['email'], $_SESSION['party_id']]);
+        
     }
 
     public function joinParty() {
+        // Join the party
         $sql = "UPDATE Member SET party_id = ? WHERE member_id = ?";
         $sentence = $this->database->prepare($sql);
         $sentence->execute([$_POST['party'], $_SESSION['member_id']]);
+        $_SESSION['party_id'] = $_POST['party'];
+
+        // Get the party name
+        $sql = "SELECT * Party WHERE party_id = ?";
+        $sentence = $this->database->prepare($sql);
+        
+        $sentence->execute([$_SESSION['party_id']]);
+
+        $result = $sentence->fetch();
+        $_SESSION['party_name'] = $result['name'];
     }
 
     public function addHabit()
     {
-        $sql = "INSERT INTO Habit (label, difficulty, color, member_id) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO Habit (label, difficulty, color, member_id, is_daily) VALUES (?, ?, ?, ?, ?)";
         $sentence = $this->database->prepare($sql);
         $label = strip_tags($_POST['label']);
         $difficulty = strip_tags($_POST['difficulty']);
         $color = strip_tags($_POST['color']);
-        $sentence->execute([$label, $difficulty, $color, $_SESSION['member_id']]);
+        if ($_POST['periodicity'] == "daily") {
+            $is_daily = 1;
+        } else {
+            $is_daily = 0;
+        }
+        $sentence->execute([$label, $difficulty, $color, $_SESSION['member_id'], $is_daily]);
     }
 
     public function readHabit()
@@ -143,9 +160,27 @@ class BDD
         }
     }
 
+    public function leaveParty() {
+        $sql = "UPDATE Member SET party_id = NULL WHERE member_id = ?";
+        $sentence = $this->database->prepare($sql);
+        $sentence->execute([$_SESSION['member_id']]);
+        $_SESSION['party_id'] = NULL;
+        $_SESSION['party_name'] = NULL;
+
+        // Delete the party if he is the last member
+        $sql = "SELECT * FROM Member WHERE party_id = ?";
+        $sentence = $this->database->prepare($sql);
+        $sentence->execute([$_SESSION['party_id']]);
+        $sentence->setFetchMode(PDO::FETCH_ASSOC);
+        $result = $sentence->fetchall();
+        if (empty($result)) {
+            $this->destroyParty();
+        }
+    }
+
     public function searchFriend()
     {
-        $sql = "SELECT * FROM Member WHERE pseudo LIKE :search AND NOT member_id = :id";
+        $sql = "SELECT * FROM Member WHERE pseudo LIKE :search AND NOT member_id = :id AND party_id IS NULL";
 
         $sentence = $this->database->prepare($sql);
 
@@ -192,16 +227,66 @@ class BDD
         }
     }
 
-    public function checkLastConnexion()
+    public function checkNewDay()
     {
-        $lastConnexion = date('d/m/Y @ H:i'); // checking last connexion
-        $actualConnexion = date('d/m/Y @ H:i');
-        $dateDiff = abs($actualConnexion-$lastConnexion);
+        $sql = "SELECT * FROM Habit";
+        $sentence = $this->database->prepare($sql);
+
+        $sentence->execute();
+        // fetch "sans index" 😉
+        $sentence->setFetchMode(PDO::FETCH_ASSOC);
+        $result = $sentence->fetchall();
+        foreach ($result as $row) {
+            if ($row['created_at'] < date('Y-m-d')) {
+                $sql = "UPDATE Habit SET created_at = CURDATE() WHERE habit_id = ?";
+                $sentence = $this->database->prepare($sql);
+                $sentence->execute([$row['habit_id']]);
+            }
+        }   
     }
 
-    public function removePoint()
-    {
+    public function addScore() {
+        var_dump($_POST);
+        $sql = "UPDATE Party SET score = score + 1 * ? WHERE party_id = ?";
+        $sentence = $this->database->prepare($sql);
+        $sentence->execute([$_POST['difficulty'], $_SESSION['party_id']]);
+
+        $sql = "UPDATE habit SET checked = 1 WHERE habit_id = ?";
+        $sentence = $this->database->prepare($sql);
+        $sentence->execute([$_POST['notchecked']]); 
+
+    }
+
+    public function removeScore() {
+        $sql = "UPDATE Party SET score = score - 1 * ? WHERE party_id = ?";
+        $sentence = $this->database->prepare($sql);
+        $sentence->execute([$_POST['difficulty'], $_SESSION['party_id']]);
         
+        var_dump($_POST);
+        $sql = "UPDATE habit SET checked = 0 WHERE habit_id = ?";
+        $sentence = $this->database->prepare($sql);
+        $sentence->execute([$_POST['checked']]);
+
+        $sql = "SELECT Score FROM Party WHERE party_id = ?";
+        $sentence = $this->database->prepare($sql);
+        $sentence->execute([$_SESSION['party_id']]);
+        $sentence->setFetchMode(PDO::FETCH_ASSOC);
+        $result = $sentence->fetch();
+        if ($result['score'] < 0) {
+            $sql = "UPDATE Member SET party_id = NULL WHERE party_id = ?";
+            $sentence = $this->database->prepare($sql);
+            $sentence->execute([$_SESSION['party_id']]);
+            $this->destroyParty();
+        }
+    }
+
+    public function destroyParty() {
+        
+        $sql = "DELETE FROM Party WHERE party_id = ?";
+        $sentence = $this->database->prepare($sql);
+        $sentence->execute([$_SESSION['party_id']]);
+        $_SESSION['party_id'] = NULL;
+        $_SESSION['party_name'] = NULL;
     }
 }
 
@@ -219,6 +304,7 @@ if (isset($_POST['login'])) {
 
 if (isset($_POST['deconnexion'])) {
     session_destroy();
+    Redirect("./login.php", true);
 }
 
 if (isset($_POST['createParty'])) {
@@ -231,4 +317,17 @@ if (isset($_POST['membre'])) {
 
 if (isset($_POST['party'])) {
     $bdd->joinParty();
+}
+
+if (isset($_POST['leaveParty'])) {
+    $bdd->leaveParty();
+    Redirect("./home.php", true);
+}
+
+if (isset($_POST['notchecked'])) {
+    $bdd->addScore();
+}
+
+if (isset($_POST['checked'])) {
+    $bdd->removeScore();
 }

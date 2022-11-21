@@ -45,7 +45,7 @@ The project belongs to its authors. ✍️
 # Authors (3) :
 
 - `ACHARD Lisa` => lisa.achard@ynov.com 👩‍🎓
-- `BOURRY Ange` => ange.bourry@ynov.com 👨‍🎓
+- `KOUAKOU Ange` => angeericstephane.kouakou@ynov.com 👨‍🎓
 - `ROLLAND Alexandre` => alexandre.rolland85@ynov.com 👨‍🎓
 
 

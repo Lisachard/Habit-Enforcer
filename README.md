@@ -34,6 +34,9 @@ The website allows the user to do few things on their own.
 - Credits : 
     - Actknowledge writers and their code's property
 
+- Error 404 : 
+    - Redirect the user if they are lost in their exploration
+
 
 # User Experience (UX) : 
 

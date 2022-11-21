@@ -3,9 +3,9 @@
 
 # Explications :
 
-This project was created by three second year students of computer sciences. As part of our object-oriented programming (OOP) lessons in PHP, our final exam is a project which consists in the making of an inspired Habitica website. We started with two major tools : a provided code which served as the basis of our project as well as the game oriented software named Unity. 🏗️
+This project was created by three second year students of computer sciences. As part of our object-oriented programming (OOP) lessons in PHP, our final exam is a project which consists in the making of an inspired Habitica website. 🏗️
 
-The role of our website is quite simple : users to make complete lines by moving pieces of different shapes named tetrominos which scroll from the top to the bottom of the screen. The completed rows then disappear while earning points and the player can fill in the freed squares again. 🕹️
+The goal of our website is quite simple : users create one habit per day in a group with other members and have to check it to fulfill it. It then earns points to the party or remove it if the habit is not checked by the end of the chosen periodicity.  
 
 
 # Fonctionalities : 
@@ -13,23 +13,28 @@ The role of our website is quite simple : users to make complete lines by moving
 The website allows the user to do few things on their own.
 
 • Account : 
-    - Register
-    - Login
-    - Modify profile
-    - Log out
+    ◦ Register
+    ◦ Login
+    ◦ Modify profile
+    ◦ Log out
 
 • Group :
-    - Create a party
-    - Invite members
-    - Join a party
-    - Look out for group ranking
+    ◦ Create a party
+    ◦ Invite members
+    ◦ Join a party
+    ◦ Look out for group ranking
 
 • Habit : 
-    - Create one activity per day
-    - Specify its name, periodicity, difficulty, color
-    - Check activity's fulfillment
-    - Add point to the group
-    - Remove point to the group
+    ◦ Create one activity per day
+    ◦ Specify its name, periodicity, difficulty, color
+    ◦ Check activity's fulfillment
+    ◦ Add point to the group
+    ◦ Remove point to the group
+
+
+# User Experience (UX) : 
+
+We choose to make an UX oriented approach. Likewise, you will find the wireframes of the website's main pages and its tree structure linked to the rendering of our project.
 
 
 # Property : 

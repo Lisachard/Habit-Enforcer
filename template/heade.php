@@ -19,7 +19,7 @@ include "head.php";
                 <div class="dropdown-content">
                     <a href="profile.php">Modify profile</a>
                     <a>
-                        <form action="./home.php" method="post">
+                        <form action="./authentification.php" method="post">
                             <input type="submit" name="deconnexion" value="Deconnexion">
                         </form>
                     </a>

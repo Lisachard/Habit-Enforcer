@@ -21,6 +21,8 @@ CREATE TABLE `Habit`(
     `difficulty` SMALLINT NOT NULL,
     `color` CHAR(255) NOT NULL,
     `member_id` CHAR(36) NOT NULL,
+    `is_daily` BOOLEAN NOT NULL,
+    `checked` BOOLEAN NOT NULL DEFAULT FALSE,
     `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY(`member_id`) REFERENCES `Member`(`member_id`) ON DELETE CASCADE
@@ -30,7 +32,6 @@ CREATE TABLE `Invitation`(
     `email` CHAR(255) NOT NULL,
     `invite_party_id` INT NOT NULL,
     `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY(`email`) REFERENCES `Member`(`email`),
     FOREIGN KEY(`invite_party_id`) REFERENCES `Party`(`party_id`)
 );

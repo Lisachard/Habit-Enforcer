@@ -14,6 +14,7 @@ include "head.php";
             <section class="left">
                 <?php if (isset($_SESSION['party_id'])) : ?>
                     <h1>Bienvenue dans le groupe <?php echo $_SESSION['party_name'] ?></h1>
+                    <?php include_once "habit.php"; ?>
                 <?php else : ?>
                     <form action="home.php" method="post">
                         <input type="text" name="partyName">
@@ -54,6 +55,9 @@ include "head.php";
                         <form action="home.php" method="get">
                             <input type="hidden" name="searching">
                             <button type="submit" value="true" name="makeInvitation">Invite Your Friends</button>
+                        </form>
+                        <form action="authentification.php" method="post">
+                            <button type="submit" name="leaveParty">Leave Party</button>
                         </form>
                     <?php endif ?>
                 <?php else : ?>

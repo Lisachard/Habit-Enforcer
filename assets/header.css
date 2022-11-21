@@ -50,7 +50,7 @@ img {
 }
 
 /* Links inside the dropdown */
-.dropdown-content a {
+.dropdown-content a, .dropdown-content .drop{
   color: #03224c;
   padding: 12px 16px;
   text-decoration: none;
@@ -62,7 +62,7 @@ img {
   display: block;
 }
 
-a::before {
+a::before, .drop::before {
   position: absolute;
   width: 2px;
   height: 100%;
@@ -71,7 +71,7 @@ a::before {
   z-index: -1;
 }
 
-a:hover {
+a:hover, .drop:hover {
   color: rgb(26, 85, 195);
   font-size: 1.6em;
 }
@@ -80,9 +80,8 @@ a:hover {
   font-size: inherit;
 }
 
-#deconnectButton {
-  color: #03224c;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
+.drop {
+  font-size: inherit;
+  background-color: transparent;
+  border:none;
 }
